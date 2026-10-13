@@ -13,8 +13,8 @@ export interface NavItem {
 }
 
 export const nav: readonly NavItem[] = [
+  { href: '/#manifesto', label: 'Manifesto' },
   { href: '/#features', label: 'Features' },
-  { href: '/#method', label: 'Method' },
   { href: '/#applications', label: 'Applications' },
   { href: '/#contact', label: 'Contact' },
 ];
@@ -35,19 +35,12 @@ export const features: readonly Feature[] = [
   { tag: 'LOCATION', title: 'Location aware', text: 'Positioning indoors and outdoors.' },
 ];
 
-export interface Step {
+export interface Item {
   title: string;
   text: string;
 }
 
-export const steps: readonly Step[] = [
-  { title: 'Listen', text: 'Start from the person and the real need.' },
-  { title: 'Prototype', text: 'Custom hardware: ESP32, e-ink, sensors, LoRa.' },
-  { title: 'Firmware and AI', text: 'On-board software and local models tuned for low power.' },
-  { title: 'Field test', text: 'Real users, real conditions, iterate until it is ready.' },
-];
-
-export const applications: readonly Step[] = [
+export const applications: readonly Item[] = [
   { title: 'High-legibility reading', text: 'Large, sharp text on e-ink, readable in full sun without eye strain.' },
   { title: 'Home and senior living', text: 'Reminders, messages and information on simple screens.' },
   { title: 'Mountains and outdoors', text: 'Messages and position over mesh where phones have no signal.' },

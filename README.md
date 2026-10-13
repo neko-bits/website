@@ -62,8 +62,9 @@ DNS su Infomaniak (zona `nekobits.it`; i record MX restano come sono):
   font e immagini) in `<meta>`: GitHub Pages non permette header custom.
 - **Teal marchio `#007C85` solo su testo grande** (logotipo, parole del motto): su bianco
   caldo è 4,4:1. Il testo corrente teal usa teal profondo `#006D77` (≥ 5,4:1).
-- **Modo scuro su ardesia `#33424A`**, unico fondo scuro ammesso; il cuscinetto del
-  simbolo diventa bianco caldo come da regole d'uso.
+- **Fondi scuri su ardesia schiarita `#3F5059`** (banda manifesto e modo scuro): l'ardesia
+  `#33424A` del marchio era troppo cupa su grandi superfici e resta per il testo secondario.
+  Bianco caldo 7,5:1, menta 5,2:1. Il cuscinetto del simbolo diventa bianco caldo.
 - **Sequenze di colore sempre dal più scuro al più chiaro**, come le dita del simbolo
   (card, timeline del metodo, chip).
 - **`og.png` e `apple-touch-icon.png`** sono resi con `rsvg-convert` dal simbolo
