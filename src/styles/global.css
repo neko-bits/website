@@ -1,0 +1,499 @@
+/*
+ * Palette and type from the nekobits visual identity v1.0.
+ * Brand teal #007C85 is 4.4:1 on warm white, so body-size teal text uses
+ * teal deep #006D77 (6.1:1 on white, 5.4:1 on warm white); #007C85 is kept
+ * for the wordmark and large type only.
+ */
+:root {
+  --font-text: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --gutter: clamp(1rem, 4vw, 2rem);
+
+  --teal-night: #00525a;
+  --teal-deep: #006d77;
+  --teal-electric: #00a3a8;
+  --cyan: #22c3cf;
+  --mint: #4fe0d2;
+  --links: #9edfe2;
+  --finger-gradient: linear-gradient(90deg, var(--teal-deep), var(--teal-electric), var(--cyan), var(--mint));
+
+  --bg: #ffffff;
+  --bg-alt: #f2f2ee;
+  --text: #1c1c1e;
+  --text-muted: #33424a;
+  --brand: #007c85;
+  --accent: #006d77;
+  --accent-hover: #00525a;
+  --on-accent: #ffffff;
+  --line: #cfe8ea;
+  --line-strong: #9edfe2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #33424a;
+    --bg-alt: #33424a;
+    --text: #f2f2ee;
+    --text-muted: #d7dedf;
+    --brand: #4fe0d2;
+    --accent: #4fe0d2;
+    --accent-hover: #9edfe2;
+    --on-accent: #1c1c1e;
+    --line: #56666e;
+    --line-strong: #6f8189;
+  }
+}
+
+/* Same tokens as dark mode: the brand allows slate as the only dark ground. */
+.band-slate {
+  --bg: #33424a;
+  --text: #f2f2ee;
+  --text-muted: #d7dedf;
+  --accent: #4fe0d2;
+  --accent-hover: #9edfe2;
+  --on-accent: #1c1c1e;
+  --line: #56666e;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* The pad gradient, held at its dark end: white text stays above 6:1. */
+.band-teal {
+  --text: #ffffff;
+  --text-muted: #f2f2ee;
+  --accent: #ffffff;
+  --accent-hover: #f2f2ee;
+  background: linear-gradient(135deg, var(--teal-deep), #004650);
+  color: var(--text);
+}
+
+.band-teal .slashes {
+  color: var(--mint);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-text);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+h1 {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 1.2rem + 3.5vw, 3.5rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin: 0 0 2rem;
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+}
+
+h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Only the skip link targets <main>; it is not a control, so no ring. */
+main:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 10;
+  padding: 0.75rem 1rem;
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 700;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.container {
+  width: min(72rem, 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+.measure {
+  max-width: 60ch;
+}
+
+/* Header and footer ------------------------------------------------------ */
+
+.site-header {
+  padding-block: calc(1rem + 5px) 1rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--finger-gradient) top / 100% 5px no-repeat;
+}
+
+.header-row,
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.brand-paw {
+  width: 2.5rem;
+  height: auto;
+}
+
+.wordmark {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.neko {
+  color: var(--brand);
+}
+
+.bits {
+  color: var(--text);
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-list a {
+  display: inline-block;
+  padding: 0.6rem 0.5rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+@media (max-width: 30rem) {
+  .nav-list a {
+    padding-inline: 0.4rem;
+    font-size: 1rem;
+  }
+
+  .nav-list li:first-child a {
+    padding-left: 0;
+  }
+}
+
+.nav-list a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.site-footer {
+  padding-block: 2.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* Sections ---------------------------------------------------------------- */
+
+main > section {
+  padding-block: clamp(3rem, 8vw, 6rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  main > section + section {
+    border-top: 1px solid var(--line);
+  }
+}
+
+.band-warm {
+  background: var(--bg-alt);
+}
+
+.slashes,
+.eyebrow,
+.tag {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.eyebrow {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.hero-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.hero-paw {
+  order: -1;
+  width: clamp(7rem, 30vw, 22rem);
+  height: auto;
+}
+
+@media (min-width: 48rem) {
+  .hero-grid {
+    grid-template-columns: 1.5fr 1fr;
+  }
+
+  .hero-paw {
+    order: 0;
+    justify-self: center;
+  }
+}
+
+.hl {
+  color: var(--brand);
+}
+
+.lead {
+  max-width: 38ch;
+  margin-bottom: 2rem;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0.5rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--accent-hover);
+  color: var(--on-accent);
+}
+
+.cards,
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--node, var(--accent));
+  border-radius: 0.75rem;
+  background: var(--bg);
+}
+
+.features {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+}
+
+/* Brand rule for the fingers, applied to every sequence: darkest left, lightest right. */
+.features > :nth-child(1) { --node: var(--teal-night); }
+.features > :nth-child(2) { --node: var(--teal-deep); }
+.features > :nth-child(3) { --node: var(--teal-electric); }
+.features > :nth-child(4) { --node: var(--cyan); }
+.features > :nth-child(5) { --node: var(--mint); }
+.features > :nth-child(6) { --node: var(--links); }
+
+.steps > :nth-child(4n + 1),
+.chips > :nth-child(4n + 1) { --node: var(--teal-deep); }
+.steps > :nth-child(4n + 2),
+.chips > :nth-child(4n + 2) { --node: var(--teal-electric); }
+.steps > :nth-child(4n + 3),
+.chips > :nth-child(4n + 3) { --node: var(--cyan); }
+.steps > :nth-child(4n + 4),
+.chips > :nth-child(4n + 4) { --node: var(--mint); }
+
+.places > :nth-child(1) { --node: var(--cyan); }
+.places > :nth-child(2) { --node: var(--mint); }
+.places > :nth-child(3) { --node: var(--links); }
+
+.band-slate .card {
+  background: transparent;
+}
+
+.card p:last-child,
+.step p:last-child {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.tag {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+/* A fingertip: coloured node with a white core, as on the symbol. */
+.tag::before,
+.step::after,
+.chips li::before {
+  content: '';
+  display: inline-block;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0 30%, var(--node) 33%);
+}
+
+.tag::before {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-right: 0.5rem;
+  vertical-align: -0.1em;
+}
+
+.steps {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  column-gap: 0;
+  counter-reset: step;
+}
+
+/* Mesh timeline: a link line through one node per step. */
+.step {
+  position: relative;
+  padding: 2.75rem 1.5rem 0 0;
+  background: linear-gradient(var(--line-strong), var(--line-strong)) no-repeat 0 0.85rem / 100% 3px;
+}
+
+.step::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+}
+
+/* The list already numbers the steps for assistive tech: the visual
+   "01_" gets empty alt text. The first declaration is the fallback for
+   browsers without alt text on generated content. */
+.step::before {
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero) '_';
+  content: counter(step, decimal-leading-zero) '_' / '';
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem 0.35rem 0.6rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 1rem;
+}
+
+.chips li::before {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.email {
+  text-decoration-color: var(--mint);
+  text-decoration-thickness: 3px;
+  font-family: var(--font-mono);
+  font-size: clamp(1.4rem, 1rem + 2.5vw, 2.25rem);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* Brand rule on slate: white pad, so the circuit traces turn slate. */
+@media (prefers-color-scheme: dark) {
+  .paw-pad {
+    fill: #f2f2ee;
+  }
+
+  .paw-trace {
+    stroke: #33424a;
+  }
+
+  .paw-via {
+    fill: #33424a;
+  }
+
+  .paw-via-core {
+    fill: #f2f2ee;
+  }
+}

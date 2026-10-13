@@ -1,0 +1,28 @@
+{
+  "name": "nekobits-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "nekobits company site — nekobits.it",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "audit:a11y": "node scripts/audit-a11y.mjs"
+  },
+  "dependencies": {
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "astro": "^7.3.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "axe-core": "^4.14.0",
+    "playwright": "1.62.0",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,71 @@
+---
+/**
+ * The nekobits symbol, inlined so its colours can follow the colour scheme.
+ * Brand rule: the full symbol (circuit-brain pad) only at 64 px and above,
+ * the simple one (plain pad) below that.
+ */
+interface Props {
+  /** Unique per page: prefixes the gradient and clip-path ids. */
+  id: string;
+  variant?: 'full' | 'simple';
+  class?: string;
+}
+
+const { id, variant = 'simple', class: className } = Astro.props;
+const pad =
+  'M60 68 C69 68 74 74 81 80 C90 87 88 100 78 102 C70 104 66 100 60 100 C54 100 50 104 42 102 C32 100 30 87 39 80 C46 74 51 68 60 68 Z';
+const links = [
+  [30, 57, 47, 41],
+  [47, 41, 73, 41],
+  [73, 41, 90, 57],
+  [30, 57, 60, 84],
+  [90, 57, 60, 84],
+];
+const fingers = [
+  { cx: 30, cy: 57, angle: -28, fill: '#006D77' },
+  { cx: 47, cy: 41, angle: -9, fill: '#00A3A8' },
+  { cx: 73, cy: 41, angle: 9, fill: '#22C3CF' },
+  { cx: 90, cy: 57, angle: 28, fill: '#4FE0D2' },
+];
+const traces = [
+  { d: 'M60 62 L60 76 L55 81', x: 55, y: 81 },
+  { d: 'M60 106 L60 92 L66 86', x: 66, y: 86 },
+  { d: 'M24 88 L43 88 L47 92', x: 47, y: 92 },
+];
+---
+
+<svg
+  class:list={['paw', className]}
+  viewBox="17 26 86 80"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <linearGradient id={`${id}-pad`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00A3A8"></stop>
+      <stop offset="1" stop-color="#004650"></stop>
+    </linearGradient>
+    {variant === 'full' && <clipPath id={`${id}-clip`}><path d={pad}></path></clipPath>}
+  </defs>
+  {links.map(([x1, y1, x2, y2]) => (
+    <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#9EDFE2" stroke-width="3" stroke-linecap="round"></line>
+  ))}
+  <path class="paw-pad" d={pad} fill={`url(#${id}-pad)`}></path>
+  {fingers.map(({ cx, cy, angle, fill }) => (
+    <ellipse cx={cx} cy={cy} rx="9.5" ry="12" fill={fill} transform={`rotate(${angle} ${cx} ${cy})`}></ellipse>
+  ))}
+  {variant === 'full' && (
+    <>
+      {fingers.map(({ cx, cy }) => <circle cx={cx} cy={cy + 1} r="3.2" fill="#FFFFFF"></circle>)}
+      <g clip-path={`url(#${id}-clip)`}>
+        {traces.map(({ d, x, y }) => (
+          <>
+            <path class="paw-trace" d={d} fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle class="paw-via" cx={x} cy={y} r="3.6" fill="#FFFFFF"></circle>
+            <circle class="paw-via-core" cx={x} cy={y} r="1.6" fill="#00525A"></circle>
+          </>
+        ))}
+      </g>
+    </>
+  )}
+</svg>

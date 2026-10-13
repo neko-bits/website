@@ -1,0 +1,81 @@
+---
+import '@fontsource/atkinson-hyperlegible/400.css';
+import '@fontsource/atkinson-hyperlegible/700.css';
+import '@fontsource/jetbrains-mono/700.css';
+import '../styles/global.css';
+import Paw from '../components/Paw.astro';
+import { nav, site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { title = site.title, description = site.description, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.png', Astro.site);
+const year = new Date().getFullYear();
+// Nothing is loaded from another origin and the page runs no script.
+const csp =
+  "default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content={csp} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#33424A" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The nekobits paw symbol and the motto: Technology that serves. And stays yours." />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-row">
+        <a class="brand" href="/">
+          <Paw id="paw-header" class="brand-paw" />
+          <span class="wordmark"><span class="neko">neko</span><span class="bits">bits</span></span>
+        </a>
+        <nav aria-label="Main">
+          <ul class="nav-list">
+            {nav.map(({ href, label }) => <li><a href={href}>{label}</a></li>)}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <p class="brand footer-brand">
+          <Paw id="paw-footer" class="brand-paw" />
+          <span class="wordmark"><span class="neko">neko</span><span class="bits">bits</span></span>
+        </p>
+        <p>© {year} {site.legalName} · Innovative startup · Italy</p>
+        <p>This site uses no cookies and no trackers.</p>
+      </div>
+    </footer>
+  </body>
+</html>

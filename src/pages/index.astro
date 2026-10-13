@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import Paw from '../components/Paw.astro';
+import { applications, features, site, steps, technologies } from '../data/site';
+---
+
+<Base>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Edge AI · IoT · Privacy by design</p>
+        <h1 id="hero-title">
+          Technology that <span class="hl">serves</span>. And stays <span class="hl">yours</span>.
+        </h1>
+        <p class="lead">
+          Personal and IoT devices with AI on board: useful, simple and accessible to everyone.
+        </p>
+        <a class="button" href="#contact">Get in touch</a>
+      </div>
+      <Paw id="paw-hero" variant="full" class="hero-paw" />
+    </div>
+  </section>
+
+  <section id="features" class="band-warm" aria-labelledby="features-title">
+    <div class="container">
+      <h2 id="features-title"><span class="slashes" aria-hidden="true">// </span>Key features</h2>
+      <ul class="cards features" role="list">
+        {features.map(({ tag, title, text }) => (
+          <li class="card">
+            <p class="tag" aria-hidden="true">{tag}</p>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="method" aria-labelledby="method-title">
+    <div class="container">
+      <h2 id="method-title"><span class="slashes" aria-hidden="true">// </span>How we work</h2>
+      <ol class="steps" role="list">
+        {steps.map(({ title, text }) => (
+          <li class="step">
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="applications" class="band-slate" aria-labelledby="applications-title">
+    <div class="container">
+      <h2 id="applications-title"><span class="slashes" aria-hidden="true">// </span>Where it helps</h2>
+      <ul class="cards places" role="list">
+        {applications.map(({ title, text }) => (
+          <li class="card">
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="research" aria-labelledby="research-title">
+    <div class="container">
+      <h2 id="research-title"><span class="slashes" aria-hidden="true">// </span>Research and technology</h2>
+      <p class="measure">
+        We also develop solutions with universities, research centres and Italian and European innovation
+        networks.
+      </p>
+      <ul class="chips" role="list" aria-label="Technologies">
+        {technologies.map((name) => <li>{name}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="band-teal" aria-labelledby="contact-title">
+    <div class="container">
+      <h2 id="contact-title"><span class="slashes" aria-hidden="true">// </span>Let's talk</h2>
+      <p class="measure">Projects, pilots, research partnerships: write to us.</p>
+      <p><a class="email" href={`mailto:${site.email}`}>{site.email}</a></p>
+    </div>
+  </section>
+</Base>
