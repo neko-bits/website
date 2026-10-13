@@ -25,6 +25,7 @@ npm run audit:a11y     # axe-core su / e 404, mobile 320px + desktop, chiaro + s
 ```
 src/data/site.ts        testi della pagina (feature, metodo, ambiti, tecnologie)
 src/components/Paw.astro simbolo inline: completo (≥ 64 px) o semplificato
+src/components/Icon.astro icone dei concetti (tracciati in icons.ts), decorative
 src/layouts/Base.astro  head, CSP, header, footer
 src/pages/index.astro   la pagina
 src/styles/global.css   palette, tipografia, layout, modo scuro

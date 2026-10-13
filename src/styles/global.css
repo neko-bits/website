@@ -392,6 +392,17 @@ main > section {
 .places > :nth-child(3) { --node: var(--links); }
 
 
+.card-icon {
+  display: block;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: 1rem;
+  padding: 0.65rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--node, var(--accent)) 18%, transparent);
+  color: var(--accent);
+}
+
 .card p:last-child {
   margin: 0;
   color: var(--text-muted);
@@ -444,6 +455,13 @@ main > section {
 .chips li::before {
   width: 0.85rem;
   height: 0.85rem;
+}
+
+.email .icon {
+  width: 0.9em;
+  height: 0.9em;
+  margin-right: 0.35em;
+  vertical-align: -0.1em;
 }
 
 .email {
