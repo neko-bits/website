@@ -15,6 +15,8 @@
   --cyan: #22c3cf;
   --mint: #4fe0d2;
   --links: #9edfe2;
+  /* Brand slate #33424A lifted one step for large grounds; #33424A stays for muted text. */
+  --slate-ground: #3f5059;
   --finger-gradient: linear-gradient(90deg, var(--teal-deep), var(--teal-electric), var(--cyan), var(--mint));
 
   --bg: #ffffff;
@@ -31,28 +33,29 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #33424a;
-    --bg-alt: #33424a;
+    --bg: var(--slate-ground);
+    --bg-alt: var(--slate-ground);
     --text: #f2f2ee;
     --text-muted: #d7dedf;
     --brand: #4fe0d2;
     --accent: #4fe0d2;
     --accent-hover: #9edfe2;
     --on-accent: #1c1c1e;
-    --line: #56666e;
+    --line: #5f7079;
     --line-strong: #6f8189;
   }
 }
 
 /* Same tokens as dark mode: the brand allows slate as the only dark ground. */
 .band-slate {
-  --bg: #33424a;
+  --bg: var(--slate-ground);
   --text: #f2f2ee;
   --text-muted: #d7dedf;
   --accent: #4fe0d2;
   --accent-hover: #9edfe2;
   --on-accent: #1c1c1e;
-  --line: #56666e;
+  --line: #5f7079;
+  --brand: #4fe0d2;
   background: var(--bg);
   color: var(--text);
 }
@@ -198,6 +201,15 @@ main:focus {
   height: auto;
 }
 
+/* Full symbol in the header: the brand sets 64 px as its minimum size. */
+.site-header .brand-paw {
+  width: 4rem;
+}
+
+.site-header .wordmark {
+  font-size: 1.75rem;
+}
+
 .wordmark {
   font-family: var(--font-mono);
   font-size: 1.5rem;
@@ -291,9 +303,10 @@ main > section {
   align-items: center;
 }
 
+/* On phones the header already shows the full symbol. */
 .hero-paw {
-  order: -1;
-  width: clamp(7rem, 30vw, 22rem);
+  display: none;
+  width: clamp(12rem, 30vw, 22rem);
   height: auto;
 }
 
@@ -303,13 +316,19 @@ main > section {
   }
 
   .hero-paw {
-    order: 0;
+    display: block;
     justify-self: center;
   }
 }
 
 .hl {
   color: var(--brand);
+}
+
+.manifesto {
+  margin: 0;
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem);
+  line-height: 1.45;
 }
 
 .lead {
@@ -334,8 +353,7 @@ main > section {
   color: var(--on-accent);
 }
 
-.cards,
-.steps {
+.cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
   gap: 1.25rem;
@@ -364,25 +382,17 @@ main > section {
 .features > :nth-child(5) { --node: var(--mint); }
 .features > :nth-child(6) { --node: var(--links); }
 
-.steps > :nth-child(4n + 1),
 .chips > :nth-child(4n + 1) { --node: var(--teal-deep); }
-.steps > :nth-child(4n + 2),
 .chips > :nth-child(4n + 2) { --node: var(--teal-electric); }
-.steps > :nth-child(4n + 3),
 .chips > :nth-child(4n + 3) { --node: var(--cyan); }
-.steps > :nth-child(4n + 4),
 .chips > :nth-child(4n + 4) { --node: var(--mint); }
 
 .places > :nth-child(1) { --node: var(--cyan); }
 .places > :nth-child(2) { --node: var(--mint); }
 .places > :nth-child(3) { --node: var(--links); }
 
-.band-slate .card {
-  background: transparent;
-}
 
-.card p:last-child,
-.step p:last-child {
+.card p:last-child {
   margin: 0;
   color: var(--text-muted);
 }
@@ -395,7 +405,6 @@ main > section {
 
 /* A fingertip: coloured node with a white core, as on the symbol. */
 .tag::before,
-.step::after,
 .chips li::before {
   content: '';
   display: inline-block;
@@ -410,41 +419,8 @@ main > section {
   vertical-align: -0.1em;
 }
 
-.steps {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
-  column-gap: 0;
-  counter-reset: step;
-}
 
-/* Mesh timeline: a link line through one node per step. */
-.step {
-  position: relative;
-  padding: 2.75rem 1.5rem 0 0;
-  background: linear-gradient(var(--line-strong), var(--line-strong)) no-repeat 0 0.85rem / 100% 3px;
-}
 
-.step::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 2rem;
-  height: 2rem;
-}
-
-/* The list already numbers the steps for assistive tech: the visual
-   "01_" gets empty alt text. The first declaration is the fallback for
-   browsers without alt text on generated content. */
-.step::before {
-  counter-increment: step;
-  content: counter(step, decimal-leading-zero) '_';
-  content: counter(step, decimal-leading-zero) '_' / '';
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 1.5rem;
-  font-weight: 700;
-}
 
 .chips {
   display: flex;
@@ -486,11 +462,11 @@ main > section {
   }
 
   .paw-trace {
-    stroke: #33424a;
+    stroke: var(--slate-ground);
   }
 
   .paw-via {
-    fill: #33424a;
+    fill: var(--slate-ground);
   }
 
   .paw-via-core {

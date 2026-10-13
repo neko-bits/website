@@ -18,7 +18,7 @@ const ogImage = new URL('/og.png', Astro.site);
 const year = new Date().getFullYear();
 // Nothing is loaded from another origin and the page runs no script.
 const csp =
-  "default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests";
+  "default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'";
 ---
 
 <!doctype html>
@@ -32,7 +32,7 @@ const csp =
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#33424A" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#3F5059" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta property="og:type" content="website" />
@@ -52,7 +52,7 @@ const csp =
     <header class="site-header">
       <div class="container header-row">
         <a class="brand" href="/">
-          <Paw id="paw-header" class="brand-paw" />
+          <Paw id="paw-header" variant="full" class="brand-paw" />
           <span class="wordmark"><span class="neko">neko</span><span class="bits">bits</span></span>
         </a>
         <nav aria-label="Main">
